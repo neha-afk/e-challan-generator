@@ -70,10 +70,10 @@ BEGIN
 
   -- Create Work Orders for this MO (logic often handled by App, but seeding here for testing)
   -- Copying operations to Work Orders
-  INSERT INTO work_orders (mo_id, work_center_id, description, planned_duration_minutes, status, sequence)
+  INSERT INTO work_orders (mo_id, work_center_id, description, planned_duration_minutes, status)
   VALUES 
-  (v_mo_id, v_assembly_id, 'Assemble Legs and Top', 60, 'pending', 1),
-  (v_mo_id, v_paint_id, 'Apply Varnish', 30, 'pending', 2),
-  (v_mo_id, v_assembly_id, 'Final Packing', 20, 'pending', 3);
+  (v_mo_id, v_assembly_id, 'Assemble Legs and Top', 60, 'pending'),
+  (v_mo_id, v_paint_id, 'Apply Varnish', 30, 'pending'),
+  (v_mo_id, v_assembly_id, 'Final Packing', 20, 'pending');
 
 END $$;
