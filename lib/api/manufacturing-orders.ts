@@ -35,3 +35,32 @@ export async function fetchManufacturingOrders(filter?: ManufacturingOrderFilter
         progressPercentage: Math.floor(Math.random() * 100), // Mock
     }));
 }
+
+export async function createManufacturingOrder(data: {
+    product_id: string;
+    quantity: number;
+    start_date: string; // ISO string
+    due_date?: string; // ISO string
+    status: 'draft' | 'confirmed';
+}): Promise<string> {
+    const supabase = createClient();
+
+    const { data: newOrder, error } = await supabase
+        .from('manufacturing_orders')
+        .insert({
+            product_id: data.product_id,
+            quantity: data.quantity,
+            start_date: data.start_date,
+            due_date: data.due_date,
+            status: data.status,
+        })
+        .select('id')
+        .single();
+
+    if (error) {
+        console.error('Error creating manufacturing order:', error);
+        throw error;
+    }
+
+    return newOrder.id;
+}

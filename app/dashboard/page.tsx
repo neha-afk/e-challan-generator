@@ -13,9 +13,8 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 import { OrdersTable } from "@/components/features/manufacturing/orders-table"
+import { CreateOrderForm } from "@/components/features/manufacturing/create-order-form"
 
-// Simple Tabs implementation since we didn't scaffold the full Tabs component yet
-// or we can use state for tabs. State is easier for now to ensure it works without more files.
 const TABS = [
     { value: 'all', label: 'All Orders' },
     { value: 'confirmed', label: 'Planned' },
@@ -27,6 +26,12 @@ const TABS = [
 export default function DashboardPage() {
     const [activeTab, setActiveTab] = useState('all')
     const [isDialogOpen, setIsDialogOpen] = useState(false)
+    const [refreshTrigger, setRefreshTrigger] = useState(0)
+
+    const handleOrderCreated = () => {
+        setIsDialogOpen(false)
+        setRefreshTrigger(prev => prev + 1) // Trigger table refresh
+    }
 
     return (
         <div className="flex-1 space-y-4 p-8 pt-6">
@@ -39,15 +44,15 @@ export default function DashboardPage() {
                                 <Plus className="mr-2 h-4 w-4" /> New Order
                             </Button>
                         </DialogTrigger>
-                        <DialogContent>
+                        <DialogContent className="sm:max-w-[600px]">
                             <DialogHeader>
                                 <DialogTitle>Create Manufacturing Order</DialogTitle>
                                 <DialogDescription>
-                                    Create Order Form Coming Soon
+                                    Schedule a new production run. BOM will be loaded automatically.
                                 </DialogDescription>
                             </DialogHeader>
-                            <div className="flex justify-end">
-                                <Button variant="outline" onClick={() => setIsDialogOpen(false)}>Close</Button>
+                            <div className="py-4">
+                                <CreateOrderForm onSuccess={handleOrderCreated} />
                             </div>
                         </DialogContent>
                     </Dialog>
@@ -74,7 +79,7 @@ export default function DashboardPage() {
                     ))}
                 </div>
 
-                <OrdersTable statusFilter={activeTab} />
+                <OrdersTable key={refreshTrigger} statusFilter={activeTab} />
             </div>
         </div>
     )
