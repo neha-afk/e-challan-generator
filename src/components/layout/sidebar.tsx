@@ -36,7 +36,7 @@ export function Sidebar({ className, onItemClick }: SidebarProps) {
                     <div className="space-y-1">
                         {navItems.map((item) => (
                             <Link
-                                key={item.href}
+                                key={item.name}
                                 href={item.href}
                                 onClick={onItemClick}
                                 className={cn(
