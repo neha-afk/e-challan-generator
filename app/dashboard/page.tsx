@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dialog"
 import { OrdersTable } from "@/components/features/manufacturing/orders-table"
 import { CreateOrderForm } from "@/components/features/manufacturing/create-order-form"
+import { AnalyticsCards } from "@/components/features/dashboard/analytics-cards"
 
 const TABS = [
     { value: 'all', label: 'All Orders' },
@@ -58,6 +59,8 @@ export default function DashboardPage() {
                     </Dialog>
                 </div>
             </div>
+
+            <AnalyticsCards />
 
             <div className="space-y-4">
                 {/* Custom Tabs specific for this page */}
