@@ -21,8 +21,8 @@ export function Sidebar({ className, onItemClick }: SidebarProps) {
     const pathname = usePathname()
 
     const navItems = [
-        { name: "Dashboard", href: "/", icon: Home },
-        { name: "Manufacturing Orders", href: "/manufacturing-orders", icon: Package },
+        { name: "Dashboard", href: "/dashboard", icon: Home },
+        { name: "Manufacturing Orders", href: "/dashboard", icon: Package },
         { name: "Work Orders", href: "/work-orders", icon: ClipboardList },
         { name: "Work Centers", href: "/work-centers", icon: Building2 },
         { name: "Stock Ledger", href: "/stock-ledger", icon: Archive },
