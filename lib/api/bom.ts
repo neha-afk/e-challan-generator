@@ -7,6 +7,41 @@ export type BomWithItems = BillOfMaterial & {
     })[]
 };
 
+export type BomWithProduct = BillOfMaterial & {
+    product: Product;
+    items_count?: number; // Added via aggregation or join in query
+};
+
+export async function fetchAllBOMs(): Promise<BomWithProduct[]> {
+    const supabase = createClient();
+
+    // Fetch BOMs with Product details
+    const { data: boms, error } = await supabase
+        .from('bill_of_materials')
+        .select(`
+            *,
+            product:products(*)
+        `)
+        .order('created_at', { ascending: false });
+
+    if (error) throw error;
+
+    // Fetch counts - simple N+1 for this demo, usually better with a view
+    const bomsWithCounts = await Promise.all(boms.map(async (bom) => {
+        const { count } = await supabase
+            .from('bom_items')
+            .select('*', { count: 'exact', head: true })
+            .eq('bom_id', bom.id);
+
+        return {
+            ...bom,
+            items_count: count || 0
+        };
+    }));
+
+    return bomsWithCounts as BomWithProduct[];
+}
+
 export async function fetchActiveBOM(productId: string): Promise<BomWithItems | null> {
     const supabase = createClient();
 
@@ -45,4 +80,38 @@ export async function fetchActiveBOM(productId: string): Promise<BomWithItems | 
         ...bomData,
         items: itemsData as any // Casting because Supabase types with joins can be tricky
     };
+}
+
+export async function createBOM(productId: string, name: string, items: { componentId: string, quantity: number, unit: string }[]): Promise<string> {
+    const supabase = createClient();
+
+    // 1. Create BOM
+    const { data: bom, error: bomError } = await supabase
+        .from('bill_of_materials')
+        .insert({
+            product_id: productId,
+            name: name,
+            version: '1.0',
+            is_active: true
+        })
+        .select('id')
+        .single();
+
+    if (bomError) throw bomError;
+
+    // 2. Insert Items
+    const toInsert = items.map(item => ({
+        bom_id: bom.id,
+        component_product_id: item.componentId,
+        quantity: item.quantity,
+        unit: item.unit
+    }));
+
+    const { error: itemsError } = await supabase
+        .from('bom_items')
+        .insert(toInsert);
+
+    if (itemsError) throw itemsError;
+
+    return bom.id;
 }
