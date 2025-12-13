@@ -100,30 +100,129 @@ export interface Database {
                         foreignKeyName: "bill_of_materials_product_id_fkey"
                         columns: ["product_id"]
                         referencedRelation: "products"
-                        created_at: string
+                        referencedColumns: ["id"]
                     }
+                ]
+            }
+            bom_items: {
+                Row: {
+                    id: string
+                    bom_id: string
+                    component_product_id: string
+                    quantity: number
+                    unit: string
+                    created_at: string
+                }
                 Insert: {
-                        id?: string
-                        product_id: string
-                        quantity_change: number
-                        reason: string
-                        created_at?: string
-                    }
+                    id?: string
+                    bom_id: string
+                    component_product_id: string
+                    quantity: number
+                    unit: string
+                    created_at?: string
+                }
                 Update: {
-                        id?: string
-                        product_id?: string
-                        quantity_change?: number
-                        reason?: string
-                        created_at?: string
-                    }
+                    id?: string
+                    bom_id?: string
+                    component_product_id?: string
+                    quantity?: number
+                    unit?: string
+                    created_at?: string
+                }
                 Relationships: [
-                        {
-                            foreignKeyName: "stock_ledger_product_id_fkey"
-                            columns: ["product_id"]
-                            referencedRelation: "products"
-                            referencedColumns: ["id"]
-                        }
-                    ]
+                    {
+                        foreignKeyName: "bom_items_bom_id_fkey"
+                        columns: ["bom_id"]
+                        referencedRelation: "bill_of_materials"
+                        referencedColumns: ["id"]
+                    },
+                    {
+                        foreignKeyName: "bom_items_component_product_id_fkey"
+                        columns: ["component_product_id"]
+                        referencedRelation: "products"
+                        referencedColumns: ["id"]
+                    }
+                ]
+            }
+            work_orders: {
+                Row: {
+                    id: string
+                    manufacturing_order_id: string
+                    name: string
+                    status: 'pending' | 'in_progress' | 'completed'
+                    work_center: string
+                    assignee_id: string | null
+                    estimated_duration: number // minutes
+                    actual_duration: number // minutes
+                    started_at: string | null
+                    completed_at: string | null
+                    created_at: string
+                }
+                Insert: {
+                    id?: string
+                    manufacturing_order_id: string
+                    name: string
+                    status?: 'pending' | 'in_progress' | 'completed'
+                    work_center?: string
+                    assignee_id?: string | null
+                    estimated_duration?: number
+                    actual_duration?: number
+                    started_at?: string | null
+                    completed_at?: string | null
+                    created_at?: string
+                }
+                Update: {
+                    id?: string
+                    manufacturing_order_id?: string
+                    name?: string
+                    status?: 'pending' | 'in_progress' | 'completed'
+                    work_center?: string
+                    assignee_id?: string | null
+                    estimated_duration?: number
+                    actual_duration?: number
+                    started_at?: string | null
+                    completed_at?: string | null
+                    created_at?: string
+                }
+                Relationships: [
+                    {
+                        foreignKeyName: "work_orders_manufacturing_order_id_fkey"
+                        columns: ["manufacturing_order_id"]
+                        referencedRelation: "manufacturing_orders"
+                        referencedColumns: ["id"]
+                    }
+                ]
+            }
+            stock_ledger: {
+                Row: {
+                    id: string
+                    product_id: string
+                    quantity_change: number
+                    reason: string
+                    created_at: string
+                }
+                Insert: {
+                    id?: string
+                    product_id: string
+                    quantity_change: number
+                    reason: string
+                    created_at?: string
+                }
+                Update: {
+                    id?: string
+                    product_id?: string
+                    quantity_change?: number
+                    reason?: string
+                    created_at?: string
+                }
+                Relationships: [
+                    {
+                        foreignKeyName: "stock_ledger_product_id_fkey"
+                        columns: ["product_id"]
+                        referencedRelation: "products"
+                        referencedColumns: ["id"]
+                    }
+                ]
             }
         }
         Views: {

@@ -38,14 +38,12 @@ import { createWorkOrdersFromBOM } from "@/lib/api/work-orders"
 import { Product } from "@/types/database"
 
 const formSchema = z.object({
-    productId: z.string({
-        required_error: "Please select a product.",
-    }),
+    productId: z.string().min(1, { message: "Please select a product." }),
     quantity: z.coerce.number().int().positive({
         message: "Quantity must be a positive integer.",
     }),
     startDate: z.date({
-        required_error: "A start date is required.",
+        message: "A start date is required."
     }).refine((date) => date > new Date(), {
         message: "Start date must be in the future.",
     }),
@@ -66,7 +64,7 @@ export function CreateOrderForm({ onSuccess }: CreateOrderFormProps) {
     const [isSubmitting, setIsSubmitting] = useState(false)
 
     const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
+        resolver: zodResolver(formSchema) as any,
         defaultValues: {
             quantity: 1,
         },
@@ -289,7 +287,7 @@ export function CreateOrderForm({ onSuccess }: CreateOrderFormProps) {
                                             <AlertTriangle className="mr-2 h-4 w-4" /> Insufficient Stock
                                         </div>
                                         <ul className="mt-1 list-disc pl-5">
-                                            {stockStatus.missingItems.map((item: any, idx) => (
+                                            {stockStatus.missingItems.map((item, idx) => (
                                                 <li key={idx}>
                                                     {item.name}: Need {item.required}, Have {item.available}
                                                 </li>

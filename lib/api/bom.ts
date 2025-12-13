@@ -78,7 +78,7 @@ export async function fetchActiveBOM(productId: string): Promise<BomWithItems | 
 
     return {
         ...bomData,
-        items: itemsData as any // Casting because Supabase types with joins can be tricky
+        items: itemsData as (BomItem & { component: Product })[]
     };
 }
 

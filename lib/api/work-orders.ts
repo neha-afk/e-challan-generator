@@ -35,7 +35,7 @@ export async function fetchWorkOrders(filter: 'all' | 'my_work' | 'in_progress' 
         throw error;
     }
 
-    return data as any;
+    return data as WorkOrderWithMO[];
 }
 
 export async function startWorkOrder(id: string): Promise<void> {

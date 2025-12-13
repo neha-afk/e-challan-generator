@@ -65,10 +65,10 @@ export async function fetchStockLedger(productId?: string): Promise<StockLedgerW
         throw error;
     }
 
-    return data as any;
+    return data as StockLedgerWithProduct[];
 }
 
-export async function checkMaterialAvailability(bomItems: any[], quantityToProduce: number): Promise<{
+export async function checkMaterialAvailability(bomItems: { component_product_id: string; quantity: number; component: { name: string } }[], quantityToProduce: number): Promise<{
     available: boolean;
     missingItems: { name: string; required: number; available: number }[];
 }> {
