@@ -1,0 +1,12 @@
+# Computer Vision & AI
+ultralytics      # YOLOv8 framework for vehicle detection and tracking
+opencv-python    # Core library for real-time video processing and image manipulation
+numpy            # Fundamental package for numerical computation, matrix operations for images
+
+# Web Framework
+flask            # Lightweight web server to stream video and serve the dashboard
+
+# Reporting & Utilities
+reportlab        # For programmatically generating PDF E-Challans
+qrcode           # To generate QR codes for payment or verification on challans
+pillow           # Python Imaging Library, used for image handling and processing validation snapshots

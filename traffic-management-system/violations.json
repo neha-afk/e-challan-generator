@@ -1,0 +1,79 @@
+[
+    {
+        "id": "42",
+        "plate": "AP-24-FW-5998",
+        "timestamp": "2025-12-19 12:26:56",
+        "speed": 4.349896550494045,
+        "limit": 4,
+        "lane": "Lane 1",
+        "violation_type": "Overspeed",
+        "snapshot_path": "C:\\Users\\neha\\Desktop\\carrot\\traffic-management-system\\snapshots\\42_20251219_122656.jpg",
+        "challan_path": "C:\\Users\\neha\\Desktop\\carrot\\traffic-management-system\\challans\\Challan_42_2025-12-19_122656.pdf"
+    },
+    {
+        "id": "17",
+        "plate": "TN-26-NT-3845",
+        "timestamp": "2025-12-19 12:26:11",
+        "speed": 6.924738262201683,
+        "limit": 4,
+        "lane": "Lane 1",
+        "violation_type": "Overspeed",
+        "snapshot_path": "C:\\Users\\neha\\Desktop\\carrot\\traffic-management-system\\snapshots\\17_20251219_122611.jpg",
+        "challan_path": "C:\\Users\\neha\\Desktop\\carrot\\traffic-management-system\\challans\\Challan_17_2025-12-19_122611.pdf"
+    },
+    {
+        "id": "18",
+        "plate": "TN-54-GX-9705",
+        "timestamp": "2025-12-19 12:26:11",
+        "speed": 6.10940258945177,
+        "limit": 5,
+        "lane": "Lane 2",
+        "violation_type": "Overspeed",
+        "snapshot_path": "C:\\Users\\neha\\Desktop\\carrot\\traffic-management-system\\snapshots\\18_20251219_122611.jpg",
+        "challan_path": "C:\\Users\\neha\\Desktop\\carrot\\traffic-management-system\\challans\\Challan_18_2025-12-19_122611.pdf"
+    },
+    {
+        "id": "17",
+        "plate": "TN-26-NT-3845",
+        "timestamp": "2025-12-19 12:25:53",
+        "speed": 0,
+        "limit": 0,
+        "lane": "bike.mp4",
+        "violation_type": "Red Light",
+        "snapshot_path": "C:\\Users\\neha\\Desktop\\carrot\\traffic-management-system\\snapshots\\17_20251219_122553.jpg",
+        "challan_path": "C:\\Users\\neha\\Desktop\\carrot\\traffic-management-system\\challans\\Challan_17_2025-12-19_122553.pdf"
+    },
+    {
+        "id": "42",
+        "plate": "KA-86-LF-9891",
+        "timestamp": "2025-12-19 12:06:49",
+        "speed": 4.349896550494045,
+        "limit": 4,
+        "lane": "Lane 1",
+        "violation_type": "Overspeed",
+        "snapshot_path": "C:\\Users\\neha\\Desktop\\carrot\\traffic-management-system\\snapshots\\42_20251219_120649.jpg",
+        "challan_path": "C:\\Users\\neha\\Desktop\\carrot\\traffic-management-system\\challans\\Challan_42_2025-12-19_120649.pdf"
+    },
+    {
+        "id": "17",
+        "plate": "TN-16-BT-1377",
+        "timestamp": "2025-12-19 12:06:04",
+        "speed": 6.924738262201683,
+        "limit": 4,
+        "lane": "Lane 1",
+        "violation_type": "Overspeed",
+        "snapshot_path": "C:\\Users\\neha\\Desktop\\carrot\\traffic-management-system\\snapshots\\17_20251219_120604.jpg",
+        "challan_path": "C:\\Users\\neha\\Desktop\\carrot\\traffic-management-system\\challans\\Challan_17_2025-12-19_120604.pdf"
+    },
+    {
+        "id": "18",
+        "plate": "KA-73-BG-5100",
+        "timestamp": "2025-12-19 12:06:03",
+        "speed": 6.10940258945177,
+        "limit": 5,
+        "lane": "Lane 2",
+        "violation_type": "Overspeed",
+        "snapshot_path": "C:\\Users\\neha\\Desktop\\carrot\\traffic-management-system\\snapshots\\18_20251219_120603.jpg",
+        "challan_path": "C:\\Users\\neha\\Desktop\\carrot\\traffic-management-system\\challans\\Challan_18_2025-12-19_120603.pdf"
+    }
+]
